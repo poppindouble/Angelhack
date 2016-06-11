@@ -19,7 +19,7 @@ def main(argv):
   if len(argv) > 1:
     imageurl = argv[1]
   else:
-    imageurl = 'https://files.slack.com/files-pri/T092MMC7J-F1G3DQZ3R/tower2.jpg'
+    imageurl = '/Users/rowandempster/git/Angelhack/PostColoring/clarifai/data/tahoe.jpg'
 
   api = ClarifaiApi()
 
