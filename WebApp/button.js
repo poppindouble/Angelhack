@@ -1,4 +1,6 @@
 
+var MODE = 'DRAW';
+
 // for buttons
 function uploadImageClicked() {
 	console.log("upload image clicked");
@@ -8,6 +10,14 @@ function colourItClicked() {
 	console.log("colour image clicked");
 }
 
+function changeMode() {
+	if (MODE === 'DRAW') {
+		MODE = 'ERASE';
+	} else {
+		MODE = 'DRAW';
+	}
+	console.log('Changed mode to: ' + MODE);
+}
 
 
 // for sliders
