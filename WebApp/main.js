@@ -1,19 +1,10 @@
 var WILL = {
 	backgroundColor: Module.Color.WHITE,
-	color: Module.Color.from(204, 204, 204),
+	color: Module.Color.BLACK,
 
 	init: function(width, height) {
-		this.canvas = new Module.InkCanvas(document.getElementById("canvas"), width, height);
-		this.canvas.clear(this.backgroundColor);
-
-		this.brush = new Module.DirectBrush();
-
-		this.pathBuilder = new Module.SpeedPathBuilder();
-		this.pathBuilder.setNormalizationConfig(182, 3547);
-		this.pathBuilder.setPropertyConfig(Module.PropertyName.Width, 2.05, 34.53, 0.72, NaN, Module.PropertyFunction.Power, 1.19, false);
-
-		this.strokeRenderer = new Module.StrokeRenderer(this.canvas, this.canvas);
-		this.strokeRenderer.configure({brush: this.brush, color: this.color});
+		this.initInkEngine(width, height);
+		this.initEvents();
 	},
 
 	initInkEngine: function(width, height) {
@@ -95,8 +86,6 @@ var WILL = {
 	clear: function() {
 		this.canvas.clear(this.backgroundColor);
 	}
-
-
 };
 
 Module.addPostScript(function() {
