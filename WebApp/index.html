@@ -14,11 +14,15 @@
   </head>
   <body>
 	<header id="header">This gonna be our winning hack</header>
+
 	<canvas id="canvas" oncontextmenu="event.preventDefault();"></canvas>
+
+
+	
 	<button type="button" onclick="uploadImageClicked()">Upload Image</button> 
 	<button type="button" onclick="colourItClicked()">Colour It!</button>
 	<button type="button" onclick="changeMode()">Change Mode</button>
-
+	<button type="button" onclick="saveImageClicked()"">Save Your Art</button>
 	<input type="range" min="0" max="100" value="50" onchange="vibranceSliderOnChange(this.value)" oninput="vibranceSliderChanging(this.value)"/>
 
 	<input type="range" min="0" max="100" value="50" onchange="hueSliderOnChange(this.value)" oninput="hueSliderChanging(this.value)"/>

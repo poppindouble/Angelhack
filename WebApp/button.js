@@ -10,6 +10,7 @@ function colourItClicked() {
 	console.log("colour image clicked");
 }
 
+
 function changeMode() {
 	if (MODE === 'DRAW') {
 		MODE = 'ERASE';
@@ -19,6 +20,14 @@ function changeMode() {
 	console.log('Changed mode to: ' + MODE);
 }
 
+function saveImageClicked() {
+	console.log("save canvas image here")
+	var canvas = document.getElementById("canvas"); 
+
+
+	var imageURL = canvas.toDataURL();
+	
+}
 
 // for sliders
 
