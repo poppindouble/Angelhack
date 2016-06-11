@@ -95,6 +95,11 @@ var WILL = {
 	},
 
 	buildPath: function(pos) {
+		if (MODE === 'DRAW') {
+			this.strokeRenderer.configure({brush: this.brush, color: this.color});	
+		} else if (MODE === 'ERASE') {
+			this.strokeRenderer.configure({brush: this.brush, color: this.backgroundColor});
+		}
 		
 		if (this.inputPhase == Module.InputPhase.Begin)
 			this.smoothener.reset();
@@ -171,30 +176,31 @@ var WILL = {
 	},
 
 	drawPath: function() {
-		if (MODE === 'DRAW') {
-			this.strokeRenderer.draw(this.pathPart, this.inputPhase == Module.InputPhase.End);
-		} else if (MODE === 'ERASE') {
-			if (this.inputPhase == Module.InputPhase.Begin) {
-				this.strokeRenderer.draw(this.pathPart, false);
-				this.strokeRenderer.blendUpdatedArea();
-			}
-			else if (this.inputPhase == Module.InputPhase.Move) {
-				this.strokeRenderer.draw(this.pathPart, false);
-				this.strokeRenderer.drawPreliminary(this.preliminaryPathPart);
+		this.strokeRenderer.draw(this.pathPart, this.inputPhase == Module.InputPhase.End);
+		// if (MODE === 'DRAW') {
+		// 	this.strokeRenderer.draw(this.pathPart, this.inputPhase == Module.InputPhase.End);
+		// } else if (MODE === 'ERASE') {
+		// 	if (this.inputPhase == Module.InputPhase.Begin) {
+		// 		this.strokeRenderer.draw(this.pathPart, false);
+		// 		this.strokeRenderer.blendUpdatedArea();
+		// 	}
+		// 	else if (this.inputPhase == Module.InputPhase.Move) {
+		// 		this.strokeRenderer.draw(this.pathPart, false);
+		// 		this.strokeRenderer.drawPreliminary(this.preliminaryPathPart);
 
-				this.canvas.clear(this.strokeRenderer.updatedArea, this.backgroundColor);
-				this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.updatedArea});
+		// 		this.canvas.clear(this.strokeRenderer.updatedArea, this.backgroundColor);
+		// 		this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.updatedArea});
 
-				this.strokeRenderer.blendUpdatedArea();
-			}
-			else if (this.inputPhase == Module.InputPhase.End) {
-				this.strokeRenderer.draw(this.pathPart, true);
-				this.strokeRenderer.blendStroke(this.strokesLayer, Module.BlendMode.NORMAL);
+		// 		this.strokeRenderer.blendUpdatedArea();
+		// 	}
+		// 	else if (this.inputPhase == Module.InputPhase.End) {
+		// 		this.strokeRenderer.draw(this.pathPart, true);
+		// 		this.strokeRenderer.blendStroke(this.strokesLayer, Module.BlendMode.NORMAL);
 
-				this.canvas.clear(this.strokeRenderer.strokeBounds, this.backgroundColor);
-				this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.strokeBounds});
-			}
-		}
+		// 		this.canvas.clear(this.strokeRenderer.strokeBounds, this.backgroundColor);
+		// 		this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.strokeBounds});
+		// 	}
+		// }
 	},
 
 	clear: function() {
