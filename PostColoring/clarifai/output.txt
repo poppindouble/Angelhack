@@ -1,0 +1,90 @@
+{
+    "status_code": "OK", 
+    "status_msg": "All images in request have completed successfully. ", 
+    "meta": {
+        "tag": {
+            "timestamp": 1465666732.971867, 
+            "model": "general-v1.3", 
+            "config": "34fb1111b4d5f67cf1b8665ebc603704"
+        }
+    }, 
+    "results": [
+        {
+            "docid": 134757612300131391229721188963306992080, 
+            "status_code": "OK", 
+            "status_msg": "OK", 
+            "local_id": "", 
+            "result": {
+                "tag": {
+                    "classes": [
+                        "no person", 
+                        "nature", 
+                        "one", 
+                        "blur", 
+                        "still life", 
+                        "tropical", 
+                        "art", 
+                        "summer", 
+                        "vertical", 
+                        "pattern", 
+                        "wood", 
+                        "outdoors", 
+                        "contemporary", 
+                        "travel", 
+                        "retro", 
+                        "indoors", 
+                        "elegant", 
+                        "design", 
+                        "bright", 
+                        "water"
+                    ], 
+                    "concept_ids": [
+                        "ai_786Zr311", 
+                        "ai_tBcWlsCp", 
+                        "ai_SVshtN54", 
+                        "ai_l4WckcJN", 
+                        "ai_5Kp5FMJw", 
+                        "ai_Pbd3f6g8", 
+                        "ai_JBPqff8z", 
+                        "ai_FsT0Zqdb", 
+                        "ai_ZSKpCCHD", 
+                        "ai_V0WFhmCF", 
+                        "ai_zFnPQdgB", 
+                        "ai_Zmhsv0Ch", 
+                        "ai_pCnxWJZh", 
+                        "ai_VRmbGVWh", 
+                        "ai_1p2zMmqb", 
+                        "ai_Pf2b7clG", 
+                        "ai_j6rltf8j", 
+                        "ai_cMfj16kJ", 
+                        "ai_LxrzLJmf", 
+                        "ai_BlL0wSQh"
+                    ], 
+                    "probs": [
+                        0.9958958625793457, 
+                        0.9434189796447754, 
+                        0.9188092947006226, 
+                        0.9151007533073425, 
+                        0.8969544768333435, 
+                        0.8912711143493652, 
+                        0.8875869512557983, 
+                        0.8812893629074097, 
+                        0.8810599446296692, 
+                        0.8796696662902832, 
+                        0.8780784010887146, 
+                        0.877535343170166, 
+                        0.8765131831169128, 
+                        0.8705540895462036, 
+                        0.8627549409866333, 
+                        0.8490642309188843, 
+                        0.8422218561172485, 
+                        0.8315492868423462, 
+                        0.8206536173820496, 
+                        0.8204981088638306
+                    ]
+                }
+            }, 
+            "docid_str": "65615f40645e19d33b1765628bac71d0"
+        }
+    ]
+}
