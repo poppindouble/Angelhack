@@ -1,0 +1,12 @@
+#header {
+	width: 100%;
+	background-color: yellow;
+}
+#canvas {
+	width: 100%;
+	background-color: green;
+}
+#footer {
+	width: 100%;
+	background-color: blue;
+}

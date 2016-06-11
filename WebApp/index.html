@@ -3,10 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <title>Angel Hack</title>
-    <link rel="stylesheet" href="main.css">
-    <script src=""></script>
+    <link rel="stylesheet" href="main.css">    
+	<script src="../../scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="./sdk/scripts/js.ext.js"></script>
+	<script type="text/javascript" src="./sdk/scripts/js.ext.dom.js"></script>
+	<script type="text/javascript" src="./sdk/engine/Module.js"></script>
+	<script async type="text/javascript" src="./sdk/engine/WacomInkEngine.js"></script>
+    <script src="main.js"></script>
   </head>
+  <header id="header">This gonna be our winning hack</header>
   <body>
 	<h1>Testing</h1>
+	<canvas id="canvas" oncontextmenu="event.preventDefault();"></canvas>
+	<footer id="footer">This is the footer</footer>
   </body>
 </html>
