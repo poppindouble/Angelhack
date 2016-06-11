@@ -26,6 +26,22 @@ function saveImageClicked() {
 
 
 	var imageURL = canvas.toDataURL();
+
+	console.log(imageURL)
+	$.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/write',
+            data:{data:imageURL},
+            async:true,
+            crossDomain:true,
+            success: function(data, status, xhr) {
+
+            }
+     });
+
+	// $.post("http://localhost:3000/write", function(imageURL, status){
+ //        alert("Data: " + imageURL + "\nStatus: " + status);
+ //    });
 	
 }
 
