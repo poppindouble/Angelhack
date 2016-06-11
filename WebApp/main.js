@@ -1,6 +1,9 @@
 var WILL = {
 	backgroundColor: Module.Color.WHITE,
 	color: Module.Color.BLACK,
+	
+	mousePosX: 0,
+	mousePosY: 0,
 
 	init: function(width, height) {
 		this.initInkEngine(width, height);
@@ -30,20 +33,32 @@ var WILL = {
 		$(document).on("mouseup", function(e) {self.endStroke(e);});
 	},
 
+	setMousePos: function(evt) {
+		var canvas = document.getElementById('canvas');
+		var rect = canvas.getBoundingClientRect();
+	 	this.mousePosX = evt.clientX - rect.left;
+	 	this.mousePosY = evt.clientY - rect.top;
+	},
+
 	beginStroke: function(e) {
 		if (e.button != 0) return;
-
+	
 		this.inputPhase = Module.InputPhase.Begin;
 
-		this.buildPath({x: e.clientX, y: e.clientY});
+		this.setMousePos(e);
+		
+		this.buildPath({x: this.mousePosX, y: this.mousePosY});
 		this.drawPath();
 	},
 
 	moveStroke: function(e) {
 		if (!this.inputPhase) return;
-
+		
 		this.inputPhase = Module.InputPhase.Move;
-		this.pointerPos = {x: e.clientX, y: e.clientY};
+
+		this.setMousePos(e);
+		
+		this.pointerPos = {x: this.mousePosX, y: this.mousePosY};
 
 		if (WILL.frameID != WILL.canvas.frameID) {
 			var self = this;
@@ -59,16 +74,19 @@ var WILL = {
 
 	endStroke: function(e) {
 		if (!this.inputPhase) return;
-
+		
 		this.inputPhase = Module.InputPhase.End;
 
-		this.buildPath({x: e.clientX, y: e.clientY});
+		this.setMousePos(e);
+		
+		this.buildPath({x: this.mousePosX, y: this.mousePosY});
 		this.drawPath();
 
 		delete this.inputPhase;
 	},
 
 	buildPath: function(pos) {
+		
 		if (this.inputPhase == Module.InputPhase.Begin)
 			this.smoothener.reset();
 
@@ -89,5 +107,5 @@ var WILL = {
 };
 
 Module.addPostScript(function() {
-	WILL.init(1600, 600);
+	WILL.init(1500, 600);
 });
