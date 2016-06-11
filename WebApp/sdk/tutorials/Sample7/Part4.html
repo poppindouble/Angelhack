@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Sample 7, Part 4</title>
+
+	<script src="../../scripts/jquery.min.js"></script>
+
+	<script type="text/javascript" src="../../scripts/js.ext.js"></script>
+	<script type="text/javascript" src="../../scripts/js.ext.dom.js"></script>
+
+	<script type="text/javascript" src="../../engine/Module.js"></script>
+	<script async type="text/javascript" src="../../engine/WacomInkEngine.js"></script>
+
+	<script type="text/javascript" src="Part4.js"></script>
+
+	<style type="text/css">
+		body {position: relative; overflow: hidden; margin: 0; padding: 0; background-color: #252525; color: white;}
+		canvas {position: absolute; left: 0; top: 0; border: 0px none;}
+		#canvas {z-index: 10;}
+		#canvas2d {background-color: white;}
+		h2, p {margin-left: 20px;}
+	</style>
+</head>
+<body>
+	<div style="position:relative; height: 600px;">
+		<canvas id="canvas" oncontextmenu="event.preventDefault();"></canvas>
+		<canvas id="canvas2d" oncontextmenu="event.preventDefault();"></canvas>
+	</div>
+
+	<a href="javascript:WILL.clear()" style="position: absolute; right: 10px; top: 60px; color: green;">clear</a>
+
+	<h2>Sample 7, Part 4</h2>
+	<p>Integration between WebGL and 2D canvas</p>
+</body>
+</html>
