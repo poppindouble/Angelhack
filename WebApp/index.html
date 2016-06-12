@@ -24,7 +24,7 @@
 	<button class='btn action-button' type="button" onclick="changeMode()">Change Mode</button>
 	<button class='btn action-button' type="button" onclick="saveImageClicked()">Colour It!</button>
 	<button class='btn action-button' type="button" onclick="clearCanvas()">Clean Canvas</button>
-	<button class='btn action-button' type="button" data-toggle="modal" data-target="#tagsModal">Launch demo modal</button>
+	<button class='btn action-button' id='modal-button' type="button" data-toggle="modal" data-target="#tagsModal">Launch demo modal</button>
 
 	<div class='slider-container'>
 		<label>Thickness</label>
@@ -50,7 +50,7 @@
 		<label>Sample Rate</label>
 		<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
 	</div>
-	
+
 	<div class="modal fade" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -59,7 +59,7 @@
 			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 		  </div>
 		  <div class="modal-body">
-			
+			<img id='result-img' />
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

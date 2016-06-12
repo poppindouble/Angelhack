@@ -19,7 +19,7 @@ $("input[id='my_file']").change(function(event) {
 	fr.onload = createImage;
 	fr.readAsDataURL(file);
 
-
+	getResult();
 
     //var fileName = event.target.files[0].name;
 });
@@ -126,6 +126,9 @@ function getResult() {
 		} else {
 
 			console.log('quit')
+			var resultImgElement = document.getElementById('result-img');
+			resultImgElement.src = './Sever/result.png';
+			$('#modal-button').click();
 			// read file here
 			//"./Sever/result.png"
 		}
