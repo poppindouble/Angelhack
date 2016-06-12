@@ -55,6 +55,13 @@ function saveImageClicked() {
 }
 
 // for sliders
+function changeThickness(value) {
+	thickness = value;
+}
+
+function changeGreyness(value) {
+	greyness = value;
+}
 
 // vibrance
 function vibranceSliderOnChange(newValue) {

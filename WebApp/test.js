@@ -1,6 +1,8 @@
 var canvas, ctx;
 var prevX, prevY;
 var mousePressed = false;
+var thickness = 5;
+var greyness = 0;
 
 function init() {
 
@@ -59,11 +61,15 @@ function init() {
 	// window.addEventListener('resize', resizeCanvas, false);
 }
 
+function getColour(greyness) {
+	return 'rgb(' + greyness + ',' + greyness + ',' + greyness + ')';
+}
+
 function draw(x, y, pressed) {
 	if (pressed) {
 		ctx.beginPath();
-		ctx.strokeStyle = 'black';
-		ctx.lineWidth = 5;
+		ctx.strokeStyle = getColour(greyness);
+		ctx.lineWidth = thickness;
 		ctx.lineJoin = 'round';
 		ctx.moveTo(prevX, prevY);
 		ctx.lineTo(x, y);
