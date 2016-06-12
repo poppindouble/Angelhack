@@ -10,32 +10,6 @@ function colourItClicked() {
 	console.log("colour image clicked");
 }
 
-function tagItClicked() {
-	console.log("tag it clicked");
-	var ajax = ajax_call();
-    ajax.success(function(response) {
-    console.log(response);
-    json = JSON.stringify(response);
-   //creates a base-64 encoded ASCII string
-   json = btoa(json);
-   //save the encoded accout to web storage
-   localStorage.setItem('tags', json);
-    window.location.href = 'file:///Users/rowandempster/git/Angelhack/WebApp/tag_it.html';
-
-});
-}
-
-function ajax_call() {
-    return $.ajax({
-    url: 'http://localhost:3000/test',
-    type: 'POST',
-    async: 1,
-    error: function() {
-        alert("Error occured")
-    }
-});
-}
-
 function changeMode() {
 	if (MODE === 'DRAW') {
 		MODE = 'ERASE';
