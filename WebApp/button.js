@@ -38,8 +38,35 @@ function imageLoaded() {
 	canvas.height = img.height;
 	var ctx = canvas.getContext("2d")
 	ctx.drawImage(img,0,0);
-	console.log(canvas.toDataURL("image/png"));
-	// post method here
+
+
+
+	//var imageURl = canvas.toDataURL("image/png");
+	
+	var vibrance = document.getElementById("vibrance").value
+	var saturation = document.getElementById("saturation").value
+	var colourSampleRate = document.getElementById("colourSampleRate").value
+	var hue = document.getElementById("hue").value
+
+	$.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/write',
+            data:{
+            	imgData: canvas.toDataURL("image/png"),
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
+            	colourSampleRate: colourSampleRate
+            },
+            async:true,
+            crossDomain:true,
+            success: function(data, status, xhr) {
+
+            }
+    });
+
+
+
 }
 
 
