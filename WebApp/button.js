@@ -8,11 +8,13 @@ var colourSampleRate;
 // for buttons
 function uploadImageClicked() {
 	console.log("upload image clicked");
-	$("input[id='my_file']").click();
-	
-
-	
+	$("input[id='my_file']").click();	
 }
+
+$("input[id='my_file']").change(function(event) {
+    var fileName = event.target.files[0].name;
+    console.log(fileName);
+});
 
 function colourItClicked() {
 	console.log("colour image clicked");
