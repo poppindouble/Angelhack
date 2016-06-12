@@ -10,11 +10,6 @@ function colourItClicked() {
 	console.log("colour image clicked");
 }
 
-function tagItClicked() {
-	console.log("tag it clicked");
-	window.location.href = 'file:///Users/rowandempster/git/Angelhack/WebApp/tag_it.html';
-}
-
 
 function changeMode() {
 	if (MODE === 'DRAW') {
@@ -36,8 +31,6 @@ function saveImageClicked() {
             data:{
             	imgData: imageURL
             },
-            url: 'save.php',
-            data:{data:imageURL},
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
