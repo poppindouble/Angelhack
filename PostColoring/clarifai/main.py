@@ -16,10 +16,7 @@ def tag_images_in_directory(path, api):
 
 
 def main(argv):
-  if len(argv) > 1:
-    imageurl = argv[1]
-  else:
-    imageurl = '/Users/rowandempster/git/Angelhack/PostColoring/clarifai/data/tahoe.jpg'
+  request = json.load(sys.stdin)
 
   api = ClarifaiApi()
 
