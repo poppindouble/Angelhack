@@ -28,7 +28,11 @@ app.post('/write', function (req, res) {
       console.log("we have error")
     } else {
       console.log("call the script")
-      
+      shell.exec('python colour.py', function(status, stdout, stderr) {
+        console.log(status);
+        console.log(stdout);
+        console.log(stderr);
+      });
     }
   });
 
