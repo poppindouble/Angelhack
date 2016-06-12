@@ -7,6 +7,11 @@ function init() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
+	ctx.beginPath();
+	ctx.rect(0, 0, 1500, 600);
+	ctx.fillStyle = 'white';
+	ctx.fill();
+
 	//dividers[0].style.left = (3 * (window.innerWidth / 12)) + 'px';
 
 	$('#canvas').mousedown(function(e) {
