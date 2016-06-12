@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Angel Hack</title>
+	<meta charset="UTF-8">
+	<title>Angel Hack</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet', href='./bootstrap-3.3.6-dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="main.css">
+	<link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet', href='./bootstrap-3.3.6-dist/css/bootstrap.min.css'>
+	<link rel="stylesheet" href="main.css">
 
 	<script src="./sdk/scripts/jquery.min.js"></script>
 	<script src='./bootstrap-3.3.6-dist/js/bootstrap.min.js'></script>
@@ -20,12 +20,14 @@
 
 	<canvas id="canvas"  width='1519' height='600'></canvas>
 	
-	<button type="button" onclick="uploadImageClicked()">Upload Image</button> 
+	<button class='btn' type="button" onclick="uploadImageClicked()">Upload Image</button> 
 
-	<button type="button" onclick="changeMode()">Change Mode</button>
-	<button type="button" onclick="saveImageClicked()">Colour It!</button>
-	<button type="button" onclick="clearCanvas()">Clean Canvas</button>
-
+	<button class='btn' type="button" onclick="changeMode()">Change Mode</button>
+	<button class='btn' type="button" onclick="saveImageClicked()">Colour It!</button>
+	<button class='btn' type="button" onclick="clearCanvas()">Clean Canvas</button>
+	<button type="button" class="btn" data-toggle="modal" data-target="#tagsModal">
+		Launch demo modal
+	</button>
 
 	<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
 	<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
@@ -39,7 +41,23 @@
 
 	<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
 
-
+	<div class="modal fade" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Tweet</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 
 
 	<footer id="footer">This is the footer</footer>
