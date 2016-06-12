@@ -35,10 +35,11 @@ def main(argv):
 
   # parsed = json.loads(response)
 
+  results = ((((response['results'])[0])['result'])['tag'])['classes']
 
   f = open('output.txt', 'w')
   f.truncate()
-  print >> f, json.dumps(response, indent=4)  # or f.write('...\n')
+  print >> f, json.dumps(results, indent=4)  # or f.write('...\n')
   f.close()
 
 
