@@ -35,11 +35,66 @@ app.post('/write', function (req, res) {
       });
     }
   });
+})
 
+app.post('/thickness', function (req, res) {
+  var thickness = req.body.thickness
+  console.log("thickness", thickness)
 
 
   res.send('POST request to the homepage');
 });
+
+
+
+app.post('/greyness', function (req, res) {
+  var greyness = req.body.greyness
+  console.log("greyness", greyness)
+
+
+  res.send('POST request to the homepage');
+});
+
+
+app.post('/vibrance', function (req, res) {
+  var vibrance = req.body.vibrance
+  console.log("vibrance", vibrance)
+
+
+  res.send('POST request to the homepage');
+});
+
+
+
+app.post('/hue', function (req, res) {
+  var hue = req.body.hue
+  console.log("hue", hue)
+
+
+  res.send('POST request to the homepage');
+});
+
+
+
+app.post('/saturation', function (req, res) {
+  var saturation = req.body.saturation
+  console.log("hue", saturation)
+
+
+  res.send('POST request to the homepage');
+});
+
+
+
+app.post('/colourSampleRate', function (req, res) {
+  var colourSampleRate = req.body.colourSampleRate
+  console.log("colourSampleRate", colourSampleRate)
+
+
+  res.send('POST request to the homepage');
+});
+
+
 
 
 app.listen(3000, function () {
