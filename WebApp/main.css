@@ -24,3 +24,9 @@ body {
 	width: 200px;
 	margin: 0px 50px;
 }
+
+.slider-container {
+	width: 700px;
+	display: inline-block;
+	margin: 10px 20px;
+}

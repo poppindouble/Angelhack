@@ -26,18 +26,31 @@
 	<button class='btn action-button' type="button" onclick="clearCanvas()">Clean Canvas</button>
 	<button class='btn action-button' type="button" data-toggle="modal" data-target="#tagsModal">Launch demo modal</button>
 
-	<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
-	<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
-
-	<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
-
-	<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
-
-
-	<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
-
-	<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
-
+	<div class='slider-container'>
+		<label>Thickness</label>
+		<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
+	</div>
+	<div class='slider-container'>
+		<label>Greyness</label>
+		<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
+	</div>
+	<div class='slider-container'>
+		<label>Vibrance</label>
+		<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
+	</div>
+	<div class='slider-container'>
+		<label>Hue</label>
+		<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
+	</div>
+	<div class='slider-container'>
+		<label>Saturation</label>
+		<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
+	</div>
+	<div class='slider-container'>
+		<label>Sample Rate</label>
+		<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
+	</div>
+	
 	<div class="modal fade" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
