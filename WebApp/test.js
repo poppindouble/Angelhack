@@ -82,10 +82,11 @@ function draw(x, y, pressed) {
 
 function erase(x, y, pressed) {
 	if (pressed) {
-		ctx.clearRect(x, y, -5, -5);
-		ctx.clearRect(x, y, 5, -5);
-		ctx.clearRect(x, y, -5, 5);
-		ctx.clearRect(x, y, 5, 5);
+		ctx.fillStyle = 'white';
+		ctx.fillRect(x, y, -thickness, -thickness);
+		ctx.fillRect(x, y, thickness, -thickness);
+		ctx.fillRect(x, y, -thickness, thickness);
+		ctx.fillRect(x, y, thickness, thickness);
 	}
 }
 
