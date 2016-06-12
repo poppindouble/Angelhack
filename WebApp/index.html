@@ -29,14 +29,14 @@
 	<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
 	<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
 
-	<input type="range" min="0" max="100" value="50" onchange="vibranceSliderOnChange(this.value)" oninput="vibranceSliderChanging(this.value)"/>
+	<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
 
-	<input type="range" min="0" max="100" value="50" onchange="hueSliderOnChange(this.value)" oninput="hueSliderChanging(this.value)"/>
+	<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
 
 
-	<input type="range" min="0" max="100" value="50" onchange="saturationSliderOnChange(this.value)" oninput="saturationSliderChanging(this.value)"/>
+	<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
 
-	<input type="range" min="0" max="100" value="50" onchange="colourSampleRateSliderOnChange(this.value)" oninput="colourSampleRateSliderChanging(this.value)"/>
+	<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
 
 
 

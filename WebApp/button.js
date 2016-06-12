@@ -68,59 +68,33 @@ function saveImageClicked() {
 function changeThickness(value) {
 	thickness = value;
 	console.log("changeThickness", thickness)
-	// post to the sever about thickness
-
-
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/thickness',
-            data:{
-            	thickness: thickness
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
-
-            }
-    });
-
-
 }
 
 function changeGreyness(value) {
 	greyness = value;
 	console.log("changeGreyness", greyness)
-	// post to the sever about greyness
-
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/greyness',
-            data:{
-            	greyness: greyness
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
-
-            }
-    });
-
-
 }
 
 // vibrance
 function vibranceSliderOnChange(newValue) {
 	console.log("vibranceSliderOnChange", newValue);
 	// post to the server about vibrance
+
+
+	var hue = document.getElementById("hue").value
+	var saturation = document.getElementById("saturation").value
+	var colourSampleRate = document.getElementById("colourSampleRate").value
+
+
 	var vibrance = newValue
-
-
-
 	$.ajax({
             type: "POST",
-            url: 'http://localhost:3000/vibrance',
+            url: 'http://localhost:3000/attributes',
             data:{
-            	vibrance: vibrance
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
+            	colourSampleRate: colourSampleRate
             },
             async:true,
             crossDomain:true,
@@ -128,14 +102,6 @@ function vibranceSliderOnChange(newValue) {
 
             }
     });
-
-
-
-
-}
-
-function vibranceSliderChanging(newValue) {
-	console.log("vibranceSliderChanging", newValue);	
 }
 
 // hue
@@ -146,11 +112,21 @@ function hueSliderOnChange(newValue) {
 	// post to the server about hue
 
 
+	var vibrance = document.getElementById("vibrance").value
+	var saturation = document.getElementById("saturation").value
+	var colourSampleRate = document.getElementById("colourSampleRate").value
+
+
+
+
 	$.ajax({
             type: "POST",
-            url: 'http://localhost:3000/hue',
+            url: 'http://localhost:3000/attributes',
             data:{
-            	hue: hue
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
+            	colourSampleRate: colourSampleRate
             },
             async:true,
             crossDomain:true,
@@ -158,31 +134,33 @@ function hueSliderOnChange(newValue) {
 
             }
     });
-
-
 }
 
-
-function hueSliderChanging(newValue) {
-	console.log("hueSliderChanging", newValue)
-}
 
 // saturation
 
 function saturationSliderOnChange(newValue) {
-
 	var saturation = newValue
-
-
 	console.log("saturationSliderOnChange", newValue)
-	// post to the server about saturation
+
+
+
+	var vibrance = document.getElementById("vibrance").value
+	var hue = document.getElementById("hue").value
+	var colourSampleRate = document.getElementById("colourSampleRate").value
+
+
+
 
 
 	$.ajax({
             type: "POST",
-            url: 'http://localhost:3000/saturation',
+            url: 'http://localhost:3000/attributes',
             data:{
-            	saturation: saturation
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
+            	colourSampleRate: colourSampleRate
             },
             async:true,
             crossDomain:true,
@@ -195,24 +173,28 @@ function saturationSliderOnChange(newValue) {
 
 }
 
-function saturationSliderChanging(newValue) {
-	console.log("saturationSliderChanging", newValue)
-}
 
 // colour sample rate
 
 function colourSampleRateSliderOnChange(newValue) {
-
 	var colourSampleRate = newValue
-
-
 	console.log("colourSampleRateSliderOnChange", colourSampleRate)
 	// post to the server about colour sample rate
 
+	var vibrance = document.getElementById("vibrance").value
+	var hue = document.getElementById("hue").value
+	var saturation = document.getElementById("saturation").value
+
+
+
+
 	$.ajax({
             type: "POST",
-            url: 'http://localhost:3000/colourSampleRate',
+            url: 'http://localhost:3000/attributes',
             data:{
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
             	colourSampleRate: colourSampleRate
             },
             async:true,
@@ -224,10 +206,6 @@ function colourSampleRateSliderOnChange(newValue) {
 
 
 	
-}
-
-function colourSampleRateSliderChanging(newValue) {
-	console.log("colourSampleRateSliderChanging", colourSampleRateSliderChanging)
 }
 
 

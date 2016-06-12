@@ -40,8 +40,6 @@ app.post('/write', function (req, res) {
 app.post('/thickness', function (req, res) {
   var thickness = req.body.thickness
   console.log("thickness", thickness)
-
-
   res.send('POST request to the homepage');
 });
 
@@ -63,43 +61,83 @@ app.post('/greyness', function (req, res) {
 });
 
 
-app.post('/vibrance', function (req, res) {
+app.post('/attributes', function (req, res) {
   var vibrance = req.body.vibrance
-  console.log("vibrance", vibrance)
-
-
-  res.send('POST request to the homepage');
-});
-
-
-
-app.post('/hue', function (req, res) {
   var hue = req.body.hue
-  console.log("hue", hue)
-
-
-  res.send('POST request to the homepage');
-});
-
-
-
-app.post('/saturation', function (req, res) {
   var saturation = req.body.saturation
-  console.log("hue", saturation)
-
-
-  res.send('POST request to the homepage');
-});
-
-
-
-app.post('/colourSampleRate', function (req, res) {
   var colourSampleRate = req.body.colourSampleRate
+
+  console.log("vibrance", vibrance)
+  console.log("hue", hue)
+  console.log("saturation", saturation)
   console.log("colourSampleRate", colourSampleRate)
 
 
+  shell.exec('python colour.py image ' + colourSampleRate + " " + vibrance + " " + hue + " " + saturation, function(status, stdout, stderr) {
+        console.log(status);
+        console.log(stdout);
+        console.log(stderr);
+      });
+
+
+
   res.send('POST request to the homepage');
 });
+
+
+
+
+// app.post('/vibrance', function (req, res) {
+//   var vibrance = req.body.vibrance
+//   console.log("vibrance", vibrance)
+
+//   shell.exec('python colour.py image ' + vibrance, function(status, stdout, stderr) {
+//         console.log(status);
+//         console.log(stdout);
+//         console.log(stderr);
+//       });
+
+
+
+//   res.send('POST request to the homepage');
+// });
+
+
+
+// app.post('/hue', function (req, res) {
+//   var hue = req.body.hue
+//   console.log("hue", hue)
+
+//   shell.exec('python colour.py image ' + hue, function(status, stdout, stderr) {
+//         console.log(status);
+//         console.log(stdout);
+//         console.log(stderr);
+//       });
+
+
+
+//   res.send('POST request to the homepage');
+// });
+
+
+
+// app.post('/saturation', function (req, res) {
+//   var saturation = req.body.saturation
+//   console.log("hue", saturation)
+
+
+//   res.send('POST request to the homepage');
+// });
+
+
+
+// app.post('/colourSampleRate', function (req, res) {
+//   var colourSampleRate = req.body.colourSampleRate
+//   console.log("colourSampleRate", colourSampleRate)
+
+
+//   res.send('POST request to the homepage');
+// });
 
 
 
