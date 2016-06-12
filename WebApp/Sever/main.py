@@ -16,7 +16,11 @@ def tag_images_in_directory(path, api):
 
 
 def main(argv):
-  request = json.load(sys.stdin)
+  if len(argv) > 1:
+    imageurl = argv[1]
+  else:
+    imageurl = '/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png'
+
 
   api = ClarifaiApi()
 
@@ -34,10 +38,10 @@ def main(argv):
 
   results = ((((response['results'])[0])['result'])['tag'])['classes']
 
-  f = open('output.txt', 'w')
-  f.truncate()
-  print >> f, json.dumps(results, indent=4)  # or f.write('...\n')
-  f.close()
+#   print json.dumps(results)
+
+  print json.dumps(results)
+  
 
 
 if __name__ == '__main__':

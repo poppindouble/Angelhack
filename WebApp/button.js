@@ -12,19 +12,29 @@ function colourItClicked() {
 
 function tagItClicked() {
 	console.log("tag it clicked");
-    jQuery.ajax({
-    url: '/Users/rowandempster/git/Angelhack/PostColoring/clarifai/test_ajax.py',
-    type: 'POST',
-    data: '/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png',
-    success: on_request_success
-});
-};
-
-function on_request_success(response) {
-    console.log('python response:');
-        console.log(response);
+	var ajax = ajax_call();
+    ajax.success(function(response) {
+    console.log(response);
+    json = JSON.stringify(response);
+   //creates a base-64 encoded ASCII string
+   json = btoa(json);
+   //save the encoded accout to web storage
+   localStorage.setItem('tags', json);
     window.location.href = 'file:///Users/rowandempster/git/Angelhack/WebApp/tag_it.html';
-} 
+
+});
+}
+
+function ajax_call() {
+    return $.ajax({
+    url: 'http://localhost:3000/test',
+    type: 'POST',
+    async: 1,
+    error: function() {
+        alert("Error occured")
+    }
+});
+}
 
 function changeMode() {
 	if (MODE === 'DRAW') {
