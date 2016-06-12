@@ -4,6 +4,8 @@ var vibrance;
 var saturation;
 var hue;
 var colourSampleRate;
+var img;
+var fr;
 
 // for buttons
 function uploadImageClicked() {
@@ -12,9 +14,34 @@ function uploadImageClicked() {
 }
 
 $("input[id='my_file']").change(function(event) {
-    var fileName = event.target.files[0].name;
-    console.log(fileName);
+	var file = event.target.files[0];
+	fr = new FileReader();
+	fr.onload = createImage;
+	fr.readAsDataURL(file);
+
+
+
+    //var fileName = event.target.files[0].name;
 });
+
+
+
+function createImage() {
+	img = new Image();
+	img.onload = imageLoaded;
+	img.src = fr.result;
+}
+
+function imageLoaded() {
+	var canvas = document.createElement("canvas");
+	canvas.width = img.width;
+	canvas.height = img.height;
+	var ctx = canvas.getContext("2d")
+	ctx.drawImage(img,0,0);
+	console.log(canvas.toDataURL("image/png"));
+	// post method here
+}
+
 
 function colourItClicked() {
 	console.log("colour image clicked");
