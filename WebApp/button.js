@@ -10,6 +10,21 @@ function colourItClicked() {
 	console.log("colour image clicked");
 }
 
+function tagItClicked() {
+	console.log("tag it clicked");
+    jQuery.ajax({
+    url: '/Users/rowandempster/git/Angelhack/PostColoring/clarifai/test_ajax.py',
+    type: 'POST',
+    data: '/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png',
+    success: on_request_success
+});
+};
+
+function on_request_success(response) {
+    console.log('python response:');
+        console.log(response);
+    window.location.href = 'file:///Users/rowandempster/git/Angelhack/WebApp/tag_it.html';
+} 
 
 function changeMode() {
 	if (MODE === 'DRAW') {
