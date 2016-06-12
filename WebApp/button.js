@@ -1,9 +1,17 @@
 
 var MODE = 'DRAW';
+var vibrance;
+var saturation;
+var hue;
+var colourSampleRate;
 
 // for buttons
 function uploadImageClicked() {
 	console.log("upload image clicked");
+	$("input[id='my_file']").click();
+	
+
+	
 }
 
 function colourItClicked() {
@@ -28,7 +36,11 @@ function saveImageClicked() {
             type: "POST",
             url: 'http://localhost:3000/write',
             data:{
-            	imgData: imageURL
+            	imgData: imageURL,
+            	vibrance: vibrance,
+            	hue: hue,
+            	saturation: saturation,
+            	colourSampleRate: colourSampleRate
             },
             async:true,
             crossDomain:true,
@@ -42,166 +54,141 @@ function saveImageClicked() {
 function changeThickness(value) {
 	thickness = value;
 	console.log("changeThickness", thickness)
-	// post to the sever about thickness
-
-
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/thickness',
-            data:{
-            	thickness: thickness
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
-
-            }
-    });
-
-
 }
 
 function changeGreyness(value) {
 	greyness = value;
 	console.log("changeGreyness", greyness)
-	// post to the sever about greyness
-
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/greyness',
-            data:{
-            	greyness: greyness
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
-
-            }
-    });
-
-
 }
 
 // vibrance
 function vibranceSliderOnChange(newValue) {
 	console.log("vibranceSliderOnChange", newValue);
 	// post to the server about vibrance
-	var vibrance = newValue
 
 
+	hue = document.getElementById("hue").value
+	saturation = document.getElementById("saturation").value
+	colourSampleRate = document.getElementById("colourSampleRate").value
+	vibrance = newValue
 
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/vibrance',
-            data:{
-            	vibrance: vibrance
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
+	// $.ajax({
+ //            type: "POST",
+ //            url: 'http://localhost:3000/attributes',
+ //            data:{
+ //            	vibrance: vibrance,
+ //            	hue: hue,
+ //            	saturation: saturation,
+ //            	colourSampleRate: colourSampleRate
+ //            },
+ //            async:true,
+ //            crossDomain:true,
+ //            success: function(data, status, xhr) {
 
-            }
-    });
-
-
-
-
-}
-
-function vibranceSliderChanging(newValue) {
-	console.log("vibranceSliderChanging", newValue);	
+ //            }
+ //    });
 }
 
 // hue
 
 function hueSliderOnChange(newValue) {
-	var hue = newValue
+	hue = newValue
 	console.log("hueSliderOnChange", newValue)
 	// post to the server about hue
 
 
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/hue',
-            data:{
-            	hue: hue
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
-
-            }
-    });
+	vibrance = document.getElementById("vibrance").value
+	saturation = document.getElementById("saturation").value
+	colourSampleRate = document.getElementById("colourSampleRate").value
 
 
+
+
+	// $.ajax({
+ //            type: "POST",
+ //            url: 'http://localhost:3000/attributes',
+ //            data:{
+ //            	vibrance: vibrance,
+ //            	hue: hue,
+ //            	saturation: saturation,
+ //            	colourSampleRate: colourSampleRate
+ //            },
+ //            async:true,
+ //            crossDomain:true,
+ //            success: function(data, status, xhr) {
+
+ //            }
+ //    });
 }
 
-
-function hueSliderChanging(newValue) {
-	console.log("hueSliderChanging", newValue)
-}
 
 // saturation
 
 function saturationSliderOnChange(newValue) {
-
-	var saturation = newValue
-
-
+	saturation = newValue
 	console.log("saturationSliderOnChange", newValue)
-	// post to the server about saturation
 
 
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/saturation',
-            data:{
-            	saturation: saturation
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
 
-            }
-    });
+	vibrance = document.getElementById("vibrance").value
+	hue = document.getElementById("hue").value
+	colourSampleRate = document.getElementById("colourSampleRate").value
+
+
+
+
+
+	// $.ajax({
+ //            type: "POST",
+ //            url: 'http://localhost:3000/attributes',
+ //            data:{
+ //            	vibrance: vibrance,
+ //            	hue: hue,
+ //            	saturation: saturation,
+ //            	colourSampleRate: colourSampleRate
+ //            },
+ //            async:true,
+ //            crossDomain:true,
+ //            success: function(data, status, xhr) {
+
+ //            }
+ //    });
 
 
 
 }
 
-function saturationSliderChanging(newValue) {
-	console.log("saturationSliderChanging", newValue)
-}
 
 // colour sample rate
 
 function colourSampleRateSliderOnChange(newValue) {
-
-	var colourSampleRate = newValue
-
-
+	colourSampleRate = newValue
 	console.log("colourSampleRateSliderOnChange", colourSampleRate)
 	// post to the server about colour sample rate
 
-	$.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/colourSampleRate',
-            data:{
-            	colourSampleRate: colourSampleRate
-            },
-            async:true,
-            crossDomain:true,
-            success: function(data, status, xhr) {
+	vibrance = document.getElementById("vibrance").value
+	hue = document.getElementById("hue").value
+	saturation = document.getElementById("saturation").value
 
-            }
-    });
+
+	// $.ajax({
+ //            type: "POST",
+ //            url: 'http://localhost:3000/attributes',
+ //            data:{
+ //            	vibrance: vibrance,
+ //            	hue: hue,
+ //            	saturation: saturation,
+ //            	colourSampleRate: colourSampleRate
+ //            },
+ //            async:true,
+ //            crossDomain:true,
+ //            success: function(data, status, xhr) {
+
+ //            }
+ //    });
 
 
 	
-}
-
-function colourSampleRateSliderChanging(newValue) {
-	console.log("colourSampleRateSliderChanging", colourSampleRateSliderChanging)
 }
 
 

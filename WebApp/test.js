@@ -90,6 +90,14 @@ function erase(x, y, pressed) {
 	}
 }
 
+function clearCanvas() {
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	ctx.beginPath();
+	ctx.rect(0, 0, 1500, 600);
+	ctx.fillStyle = 'white';
+	ctx.fill();
+}
+
 // function doCanvas() {
 //     /* draw something */
 //     ctx.fillStyle = '#f90';
