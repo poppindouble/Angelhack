@@ -21,6 +21,14 @@ app.get('/', function (req, res) {
 
 app.post('/write', function (req, res) {
 	var img = req.body.imgData
+
+  var vibrance = req.body.vibrance
+  var hue = req.body.hue
+  var saturation = req.body.saturation
+  var colourSampleRate = req.body.colourSampleRate
+
+
+
 	var data = img.replace(/^data:image\/\w+;base64,/, "");
 	var buf = new Buffer(data, 'base64');
 	fs.writeFile('image.png', buf, function(error) {
@@ -28,7 +36,7 @@ app.post('/write', function (req, res) {
       console.log("we have error")
     } else {
       console.log("call the script")
-      shell.exec('python colour.py', function(status, stdout, stderr) {
+      shell.exec('python colour.py image ' + colourSampleRate + " " + vibrance + " " + hue + " " + saturation, function(status, stdout, stderr) {
         console.log(status);
         console.log(stdout);
         console.log(stderr);
