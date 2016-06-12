@@ -5,17 +5,17 @@
     <title>Angel Hack</title>
     <link rel="stylesheet" href="main.css">
 	<script src="./sdk/scripts/jquery.min.js"></script>
-	<script type="text/javascript" src="./sdk/scripts/js.ext.js"></script>
+	<!-- <script type="text/javascript" src="./sdk/scripts/js.ext.js"></script>
 	<script type="text/javascript" src="./sdk/scripts/js.ext.dom.js"></script>
 	<script type="text/javascript" src="./sdk/engine/Module.js"></script>
 	<script async type="text/javascript" src="./sdk/engine/WacomInkEngine.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js"></script> -->
     <script src="button.js"></script>
   </head>
-  <body>
+  <body onload='init();'>
 	<header id="header">This gonna be our winning hack</header>
 
-	<canvas id="canvas" oncontextmenu="event.preventDefault();"></canvas>
+	<canvas id="canvas" oncontextmenu="event.preventDefault();" width='1500' height='600'></canvas>
 
 
 	
@@ -35,5 +35,7 @@
 
 
 	<footer id="footer">This is the footer</footer>
+
+	<script src='test.js'></script>
   </body>
 </html>
