@@ -1,6 +1,6 @@
 var canvas, ctx;
 var prevX, prevY;
-var drawMode = false;
+var mousePressed = false;
 
 function init() {
 
@@ -17,8 +17,12 @@ function init() {
 		// 	drawMode = true;
 		// 	draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
 		// }
-		drawMode = true;
-		draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+		if (MODE === 'DRAW') {
+			draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+		} else if (MODE === 'ERASE') {
+			erase(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+		}
+		mousePressed = true;
 	});
 
 	$('#canvas').mousemove(function(e) {
@@ -27,14 +31,19 @@ function init() {
 		// } else if (eraserMode) {
 		// 	erase(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
 		// }
-		if (drawMode) {
-			draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+		if (mousePressed) {
+			if (MODE === 'DRAW') {
+				draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+			} else if (MODE === 'ERASE') {
+				erase(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);	
+			}
 		}
 	});
 
 	$('#canvas').mouseup(function(e) {
-		drawMode = false;
+		// drawMode = false;
 		//eraserMode = false;
+		mousePressed = false;
 	});
 
 	// $('#canvas').mouseleave(function(e) {
@@ -58,6 +67,15 @@ function draw(x, y, pressed) {
 	}
 	prevX = x;
 	prevY = y;
+}
+
+function erase(x, y, pressed) {
+	if (pressed) {
+		ctx.clearRect(x, y, -5, -5);
+		ctx.clearRect(x, y, 5, -5);
+		ctx.clearRect(x, y, -5, 5);
+		ctx.clearRect(x, y, 5, 5);
+	}
 }
 
 // function doCanvas() {
