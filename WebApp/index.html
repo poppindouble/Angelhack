@@ -11,13 +11,14 @@
 	<script async type="text/javascript" src="./sdk/engine/WacomInkEngine.js"></script>
     <script src="main.js"></script> -->
     <script src="button.js"></script>
+    <script src="html2canvas.js"></script>
+    <script src="canvas2image.js"></script>
   </head>
   <body onload='init();'>
 	<header id="header">This gonna be our winning hack</header>
 
+
 	<canvas id="canvas" oncontextmenu="event.preventDefault();" width='1500' height='600'></canvas>
-
-
 	
 	<button type="button" onclick="uploadImageClicked()">Upload Image</button> 
 	<button type="button" onclick="colourItClicked()">Colour It!</button>

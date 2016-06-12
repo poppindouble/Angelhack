@@ -19,7 +19,11 @@ app.get('/', function (req, res) {
 
 
 app.post('/write', function (req, res) {
-	var img = req.body.data
+	var img = req.body.imgData
+
+  console.log(img)
+
+
 	var data = img.replace(/^data:image\/\w+;base64,/, "");
 	var buf = new Buffer(data, 'base64');
 	fs.writeFile('image.png', buf);

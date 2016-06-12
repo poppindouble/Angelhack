@@ -21,28 +21,22 @@ function changeMode() {
 }
 
 function saveImageClicked() {
-	console.log("save canvas image here")
+
 	var canvas = document.getElementById("canvas"); 
+	var imageURL = canvas.toDataURL()
 
-
-	var imageURL = canvas.toDataURL();
-
-	console.log(imageURL)
 	$.ajax({
             type: "POST",
             url: 'http://localhost:3000/write',
-            data:{data:imageURL},
+            data:{
+            	imgData: imageURL
+            },
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
 
             }
-     });
-
-	// $.post("http://localhost:3000/write", function(imageURL, status){
- //        alert("Data: " + imageURL + "\nStatus: " + status);
- //    });
-	
+    });
 }
 
 // for sliders
@@ -86,4 +80,6 @@ function colourSampleRateSliderOnChange(newValue) {
 function colourSampleRateSliderChanging(newValue) {
 
 }
+
+
 
