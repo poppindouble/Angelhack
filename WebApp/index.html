@@ -17,20 +17,14 @@
 		<h1>Colour My World</h1>
 	</header>
 
-
 	<canvas id="canvas"  width='1519' height='600'></canvas>
-	
+	<input type="file" id="my_file" style="display: none;" />	
 
-	<button class='btn' type="button" onclick="uploadImageClicked()">Upload Image</button> 
-	<input type="file" id="my_file" style="display: none;" />
-
-
-	<button class='btn' type="button" onclick="changeMode()">Change Mode</button>
-	<button class='btn' type="button" onclick="saveImageClicked()">Colour It!</button>
-	<button class='btn' type="button" onclick="clearCanvas()">Clean Canvas</button>
-	<button type="button" class="btn" data-toggle="modal" data-target="#tagsModal">
-		Launch demo modal
-	</button>
+	<button class='btn action-button' type="button" onclick="uploadImageClicked()">Upload Image</button> 
+	<button class='btn action-button' type="button" onclick="changeMode()">Change Mode</button>
+	<button class='btn action-button' type="button" onclick="saveImageClicked()">Colour It!</button>
+	<button class='btn action-button' type="button" onclick="clearCanvas()">Clean Canvas</button>
+	<button class='btn action-button' type="button" data-toggle="modal" data-target="#tagsModal">Launch demo modal</button>
 
 	<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
 	<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
@@ -61,9 +55,6 @@
 		</div>
 	  </div>
 	</div>
-
-
-	<footer id="footer">This is the footer</footer>
 
 	<script src='test.js'></script>
 	<script src="button.js"></script>
