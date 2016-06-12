@@ -45,6 +45,13 @@ app.post('/thickness', function (req, res) {
   res.send('POST request to the homepage');
 });
 
+app.post('/test', function (req, res) {
+    shell.exec('python main.py "/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png"', function(status, stdout, stderr) {
+        console.log(stdout);
+        res.end(stdout);
+      });
+});
+
 
 
 app.post('/greyness', function (req, res) {
