@@ -53,14 +53,15 @@ app.post('/thickness', function (req, res) {
 });
 
 app.post('/clarifai', function (req, res) {
-    shell.exec('python main.py "Sever/images/image.png"', function(status, stdout, stderr) {
+    shell.exec('python clarifai.py "/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png"', function(status, stdout, stderr) {
         console.log(stdout);
         res.end(stdout);
       });
 });
 
 app.post('/twitter', function (req, res) {
-    shell.exec('python main.py '+ req.body.message, function(status, stdout, stderr) {
+        console.log("message: " + req.body.message);
+    shell.exec('python twitter.py ' +'"'+ req.body.message+'"', function(status, stdout, stderr) {
         console.log(stdout);
         res.end(stdout);
       });

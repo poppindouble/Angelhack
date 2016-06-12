@@ -16,16 +16,22 @@ def tag_images_in_directory(path, api):
 
 
 def main(argv):
-    imageurl = argv[1]
+  imageurl = argv[1]
 
 
   api = ClarifaiApi()
 
-  if os.path.isfile(imageurl):
-    with open(imageurl,'rb') as image_file:
-      response = api.tag_images(image_file)
+  if imageurl.startswith('http'):
+    response = api.tag_image_urls(imageurl)
+  elif os.path.isdir(imageurl):
+    response = tag_images_in_directory(imageurl, api)
+  elif os.path.isfile(imageurl):
+     with open(imageurl,'rb') as image_file:
+       response = api.tag_images(image_file)
   else:
-    raise Exception("Must be file path")
+    raise Exception("Must input url, directory path, or file path")
+
+
 
   results = ((((response['results'])[0])['result'])['tag'])['classes']
 

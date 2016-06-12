@@ -6,11 +6,13 @@ var hue;
 var colourSampleRate;
 var img;
 var fr;
+var messageArray = "";
 
 // for buttons
 function uploadImageClicked() {
 	console.log("upload image clicked");
 	$("input[id='my_file']").click();	
+	
 }
 
 $("input[id='my_file']").change(function(event) {
@@ -18,6 +20,7 @@ $("input[id='my_file']").change(function(event) {
 	fr = new FileReader();
 	fr.onload = createImage;
 	fr.readAsDataURL(file);
+	storeTags();
 
 	getResult();
 
@@ -27,6 +30,7 @@ $("input[id='my_file']").change(function(event) {
 
 
 function createImage() {
+storeTags();
 	img = new Image();
 	img.onload = imageLoaded;
 	img.src = fr.result;
@@ -38,6 +42,7 @@ function imageLoaded() {
 	canvas.height = img.height;
 	var ctx = canvas.getContext("2d")
 	ctx.drawImage(img,0,0);
+	storeTags();
 
 
 
@@ -48,7 +53,7 @@ function imageLoaded() {
 	var colourSampleRate = document.getElementById("colourSampleRate").value
 	var hue = document.getElementById("hue").value
 
-
+storeTags();
 	$.ajax({
             type: "POST",
             url: 'http://localhost:3000/write',
@@ -62,7 +67,7 @@ function imageLoaded() {
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
-
+                storeTags();
             }
     });
 
@@ -77,6 +82,7 @@ function imageLoaded() {
 
 function colourItClicked() {
 	console.log("colour image clicked");
+	storeTags();
 }
 
 function changeMode() {
@@ -89,7 +95,7 @@ function changeMode() {
 }
 
 function saveImageClicked() {
-
+    storeTags();
 	var canvas = document.getElementById("canvas"); 
 	var imageURL = canvas.toDataURL()
 
@@ -106,13 +112,11 @@ function saveImageClicked() {
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
-
+                storeTags();
             }
     });
 
-
-
-	this.getResult()
+this.getResult();
 
 
 }
@@ -128,13 +132,27 @@ function getResult() {
 			console.log('quit')
 			var resultImgElement = document.getElementById('result-img');
 			resultImgElement.src = './Sever/result.png';
-			$('#modal-button').click();
+// 			$('#modal-button').click();
 			// read file here
 			//"./Sever/result.png"
 		}
 	})
 }
 
+function tagButtonClick(buttonId) {
+    console.log(buttonId);
+
+    messageArray += (" " + document.getElementById(buttonId).innerHTML);
+    console.log(messageArray);
+
+    $('#'+buttonId).css("background-color", "red");
+
+}
+
+function tweetButtonClick(){
+    console.log("tweeting message: " + messageArray);
+    sendTweet(messageArray);
+}
 
 // for sliders
 function changeThickness(value) {
@@ -275,6 +293,82 @@ function colourSampleRateSliderOnChange(newValue) {
 
 
 	
+}
+function setupButtons() {
+    storeTags();
+	var tags = getTagsFromStorage();
+	var json_tags = $.parseJSON(tags);
+
+	console.log(json_tags);
+	var count = 0;
+	var button_array = ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5", "#tag6", "#tag7", "#tag8", "#tag9", "#tag10"]
+	for (var x in json_tags){
+        if (json_tags.hasOwnProperty(x)){
+	        console.log(count + ": " + json_tags[x]);
+	        $(button_array[count]).html("#" + json_tags[x]);
+	        if(count>=9){
+	            break;
+	        }
+	    count++;
+        }
+    }
+    $('#preview').attr("src", '/Users/rowandempster/git/Angelhack/WebApp/Sever/result.png');
+}
+
+
+function storeTags() {
+	console.log("stored tags");
+	var ajax =  clarifai_ajax_call();
+    ajax.success(function(response) {
+    console.log(response);
+    json = JSON.stringify(response);
+   //creates a base-64 encoded ASCII string
+   json = btoa(json);
+   //save the encoded accout to web storage
+   localStorage.setItem('tags', json);
+
+});
+}
+
+function getTagsFromStorage(){
+   var json = localStorage.getItem('tags');
+   if (!json) return false;
+   localStorage.removeItem('tags');
+   //decodes a string data encoded using base-64
+   json = atob(json);
+   //parses to Object the JSON string
+   var tags = JSON.parse(json);
+   //do what you need with the Object
+   return tags;
+}
+
+function clarifai_ajax_call() {
+    return $.ajax({
+    url: 'http://localhost:3000/clarifai',
+    type: 'POST',
+    async: 1,
+    error: function() {
+        alert("Error occured")
+    }
+});
+}
+
+function sendTweet(message) {
+	var ajax = tweet_ajax_call(message);
+}
+
+function tweet_ajax_call(message) {
+    return $.ajax({
+    url: 'http://localhost:3000/twitter',
+    type: 'POST',
+    data:{
+        message: message
+    },
+    async: 1,
+    error: function() {
+        alert("Error occured")
+    }
+});
 }
 
 
