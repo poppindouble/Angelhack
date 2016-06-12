@@ -48,6 +48,7 @@ function imageLoaded() {
 	var colourSampleRate = document.getElementById("colourSampleRate").value
 	var hue = document.getElementById("hue").value
 
+
 	$.ajax({
             type: "POST",
             url: 'http://localhost:3000/write',
@@ -65,6 +66,10 @@ function imageLoaded() {
             }
     });
 
+
+	// loop web service call here
+
+	
 
 
 }
@@ -104,7 +109,29 @@ function saveImageClicked() {
 
             }
     });
+
+
+
+	this.getResult()
+
+
 }
+
+
+function getResult() {
+	$.get("http://localhost:3000/result", function(data, status){
+		if (data === "not done") {
+			console.log("not done")
+			getResult();
+		} else {
+
+			console.log('quit')
+			// read file here
+			//"./Sever/result.png"
+		}
+	})
+}
+
 
 // for sliders
 function changeThickness(value) {

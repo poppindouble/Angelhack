@@ -4,7 +4,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var shell = require('shelljs');
 
-
 app.use(bodyParser.json({limit: '50mb'})); // support json encoded bodies
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(function(req, res, next) {
@@ -101,6 +100,29 @@ app.post('/attributes', function (req, res) {
   res.send('POST request to the homepage');
 });
 
+
+
+app.get('/result', function (req, res) {
+  // track if the result image existed
+  fs.stat('result.png', function(err, stat) {
+      if(err == null) {
+          // res.send('done');
+          //res.sendFile("./result.png", {"root": __dirname});
+          res.send("done")
+
+
+      } else if(err.code == 'ENOENT') {
+          // file does not exist
+          res.send("not done");
+          //fs.writeFile('log.txt', 'Some log\n');
+      } else {
+          console.log('Some other error: ', err.code);
+      }
+  });
+
+
+
+});
 
 
 
