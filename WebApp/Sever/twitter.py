@@ -4,7 +4,7 @@ import os
 import requests
 
 def twitter_api():
-  auth = tweepy.OAuthHandler('swaQskryPDWxSG98D12Q80GKj', 'qrSb8UuBr1nIrEYVObPBuA3yO8hzqymwDINDfS7Qnfsx3WJei0')
+  auth = tweepy.OAuthHandler('6W7TFvt6lrUjZVrG9oVjtzlpO', 'Vj5gsWcM1sNXsSJs1RzvyFXQ1srdAnHGocBxZSp9RZezIv17iK')
   auth.set_access_token('741698627161063425-Jr4gCVs4NncC8pq5Z0ujKgJcVN506uW', 'fOYX56Nfz571EoD7Y2Vd8Uzgb49HAdnFPfNI4ERb0LX5v')
   api = tweepy.API(auth)
 
@@ -13,7 +13,7 @@ def twitter_api():
 
 def tweet_image(message):
     api = twitter_api()
-    filename = '/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png'
+    filename = './Sever/result.png'
     api.update_with_media(filename, status=message)
 
 def main(argv):

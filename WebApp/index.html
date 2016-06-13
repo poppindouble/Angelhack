@@ -10,66 +10,50 @@
 
 	<script src="./sdk/scripts/jquery.min.js"></script>
 	<script src='./bootstrap-3.3.6-dist/js/bootstrap.min.js'></script>
-	<script scr=clarifaiUtil.js></script>
 
   </head>
   <body onload='init();'>
-	<header id="header">
+<!-- 	<header id="header">
 		<h1>Colour My World</h1>
-	</header>
+	</header> -->
 
-	<canvas id="canvas"  width='1519' height='600'></canvas>
-
+	<div class='canvas-container'>
+		<canvas id="canvas"  width='1519' height='550'></canvas>
+		<img id="Layer_1" src="cmw.svg" width="200px">
+	</div>
 	<input type="file" id="my_file" style="display: none;" />	
 
-	
+	<div class='tools-container'>
+		<button class='btn action-button' type="button" onclick="uploadImageClicked()">Upload Image</button> 
+		<button class='btn action-button' type="button" onclick="changeMode()">Change Mode</button>
+		<button class='btn action-button' type="button" onclick="saveImageClicked()">Colour It!</button>
+		<button class='btn action-button' type="button" onclick="clearCanvas()">Clean Canvas</button>
+		<button class='btn action-button' id='modal-button' type="button" data-toggle="modal" data-target="#tagsModal" style='display: none;'>Launch demo modal</button>
 
-	<button class='btn' type="button" onclick="uploadImageClicked()">Upload Image</button> 
-	<input type="file" id="my_file" style="display: none;" />
-
-
-	<button class='btn' type="button" onclick="changeMode()">Change Mode</button>
-	<button class='btn' type="button" onclick="saveImageClicked()">Colour It!</button>
-	<button class='btn' type="button" onclick="clearCanvas()">Clean Canvas</button>
-	<button type="button" class="btn" onclick="setupButtons()" data-toggle="modal" data-target="#tagsModal">
-		Launch demo modal
-	</button>
-
-	<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
-	<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
-
-	<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
-
-	<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
-
-
-	<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
-
-
-
-	<div class='slider-container'>
-		<label>Thickness</label>
-		<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
-	</div>
-	<div class='slider-container'>
-		<label>Greyness</label>
-		<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
-	</div>
-	<div class='slider-container'>
-		<label>Vibrance</label>
-		<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
-	</div>
-	<div class='slider-container'>
-		<label>Hue</label>
-		<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
-	</div>
-	<div class='slider-container'>
-		<label>Saturation</label>
-		<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
-	</div>
-	<div class='slider-container'>
-		<label>Sample Rate</label>
-		<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
+		<div class='slider-container'>
+			<label>Thickness</label>
+			<input type='range' min='1' max='10' step='1' onchange="changeThickness(this.value)" />
+		</div>
+		<div class='slider-container'>
+			<label>Greyness</label>
+			<input type='range' min='0' max='255' step='1' onchange="changeGreyness(this.value)" />
+		</div>
+		<div class='slider-container'>
+			<label>Vibrance</label>
+			<input id="vibrance" type="range" min="0.5" max="1.5" step='0.1' value="1" onchange="vibranceSliderOnChange(this.value)"/>
+		</div>
+		<div class='slider-container'>
+			<label>Hue</label>
+			<input id="hue" type="range" min="-360" max="360" step='1' value="0" onchange="hueSliderOnChange(this.value)"/>
+		</div>
+		<div class='slider-container'>
+			<label>Saturation</label>
+			<input id="saturation" type="range" min="0" max="2" step='0.1' value="1" onchange="saturationSliderOnChange(this.value)" />
+		</div>
+		<div class='slider-container'>
+			<label>Sample Rate</label>
+			<input id="colourSampleRate" type="range" min="25" max="75" value="50" onchange="colourSampleRateSliderOnChange(this.value)" />
+		</div>
 	</div>
 
 	<div class="modal fade" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -77,38 +61,33 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			<h4 class="modal-title" id="myModalLabel">Preview</h4>
 		  </div>
-		  <div class="modal-body">
-			<img id='result-img' />
-		  <div class="modal-body" align=center>
-			<image id='preview' src="/Users/rowandempster/git/Angelhack/WebApp/Sever/result.png" width=500px height=300px>
-			<div> <button id='tag1' onclick="tagButtonClick('tag1')">tag1</button>
-			 <button id='tag2' onclick="tagButtonClick('tag2')">tag2</button>
-			  <button id='tag3' onclick="tagButtonClick('tag3')">tag3</button>
-			   <button id='tag4' onclick="tagButtonClick('tag4')">tag4</button>
-			    <button id='tag5' onclick="tagButtonClick('tag5')">tag5</button> </div> <br>
-			<div> <button id='tag6' onclick="tagButtonClick('tag6')">tag6</button> 
-			<button id='tag7' onclick="tagButtonClick('tag7')">tag7</button> 
-			<button id='tag8' onclick="tagButtonClick('tag8')">tag8</button> 
-			<button id='tag9' onclick="tagButtonClick('tag9')">tag9</button> 
-			<button id='tag10'onclick="tagButtonClick('tag10')">tag10</button> </div>
+		  <div class="modal-body" align="center">
+		  	<img id='result-img' height="600px" width="100%" />
+		  	<div class='top-row-tags'> 
+		  		<button id='tag1' class='btn btn-xs' onclick="tagButtonClick('tag1')">tag1</button>
+	            <button id='tag2' class='btn btn-xs' onclick="tagButtonClick('tag2')">tag2</button>
+	            <button id='tag3' class='btn btn-xs' onclick="tagButtonClick('tag3')">tag3</button>
+	            <button id='tag4' class='btn btn-xs' onclick="tagButtonClick('tag4')">tag4</button>
+	            <button id='tag5' class='btn btn-xs' onclick="tagButtonClick('tag5')">tag5</button>
+	        </div>
+            <div> 
+            	<button id='tag6' class='btn btn-xs' onclick="tagButtonClick('tag6')">tag6</button> 
+            	<button id='tag7' class='btn btn-xs' onclick="tagButtonClick('tag7')">tag7</button> 
+            	<button id='tag8' class='btn btn-xs' onclick="tagButtonClick('tag8')">tag8</button> 
+            	<button id='tag9' class='btn btn-xs' onclick="tagButtonClick('tag9')">tag9</button> 
+            	<button id='tag10'class='btn btn-xs' onclick="tagButtonClick('tag10')">tag10</button>
+            </div>
+			
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-default" onclick='deleteImages()'data-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary" onclick="tweetButtonClick()">Tweet</button>
 		  </div>
 		</div>
 	  </div>
 	</div>
-
-
-
-
-	<footer id="footer">This is the footer</footer>
-
-
-    <script scr=twitterUtil.js></script>
 
 	<script src='test.js'></script>
 	<script src="button.js"></script>

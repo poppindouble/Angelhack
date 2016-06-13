@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 
 app.post('/write', function (req, res) {
-	var img = req.body.imgData
+  var img = req.body.imgData
 
   var vibrance = req.body.vibrance
   var hue = req.body.hue
@@ -30,9 +30,9 @@ app.post('/write', function (req, res) {
 
 
 
-	var data = img.replace(/^data:image\/\w+;base64,/, "");
-	var buf = new Buffer(data, 'base64');
-	fs.writeFile('image.png', buf, function(error) {
+  var data = img.replace(/^data:image\/\w+;base64,/, "");
+  var buf = new Buffer(data, 'base64');
+  fs.writeFile('./Sever/image.png', buf, function(error) {
     if(error) {
       console.log("we have error")
     } else {
@@ -53,7 +53,7 @@ app.post('/thickness', function (req, res) {
 });
 
 app.post('/clarifai', function (req, res) {
-    shell.exec('python clarifai.py "/Users/rowandempster/git/Angelhack/WebApp/Sever/image.png"', function(status, stdout, stderr) {
+    shell.exec('python ./Sever/clarifai.py ./Sever/result.png', function(status, stdout, stderr) {
         console.log(stdout);
         res.end(stdout);
       });
@@ -61,7 +61,7 @@ app.post('/clarifai', function (req, res) {
 
 app.post('/twitter', function (req, res) {
         console.log("message: " + req.body.message);
-    shell.exec('python twitter.py ' +'"'+ req.body.message+'"', function(status, stdout, stderr) {
+    shell.exec('python ./Sever/twitter.py ' +'"'+ req.body.message+'"', function(status, stdout, stderr) {
         console.log(stdout);
         res.end(stdout);
       });
@@ -104,28 +104,31 @@ app.post('/attributes', function (req, res) {
 
 
 app.get('/result', function (req, res) {
-  // track if the result image existed
-  fs.stat('result.png', function(err, stat) {
-      if(err == null) {
-          // res.send('done');
-          //res.sendFile("./result.png", {"root": __dirname});
-          res.send("done")
+ // track if the result image existed
+ fs.stat(__dirname + '/result.png', function(err, stat) {
+     if(err == null) {
+         // res.send('done');
+         //res.sendFile("./result.png", {"root": __dirname});
+
+         setTimeout(function() {}, 4000);
+         res.send("done12")
 
 
-      } else if(err.code == 'ENOENT') {
-          // file does not exist
-          res.send("not done");
-          //fs.writeFile('log.txt', 'Some log\n');
-      } else {
-          console.log('Some other error: ', err.code);
-      }
-  });
-
-
+     } else if(err.code == 'ENOENT') {
+         // file does not exist
+         res.send("not done");
+         //fs.writeFile('log.txt', 'Some log\n');
+     } else {
+         console.log('Some other error: ', err.code);
+     }
+ });
 
 });
 
-
+app.post('/deleteImages', function(req, res) {
+  fs.unlinkSync(__dirname + '/result.png');
+  fs.unlinkSync(__dirname + '/image.png');
+});
 
 // app.post('/vibrance', function (req, res) {
 //   var vibrance = req.body.vibrance

@@ -20,7 +20,6 @@ $("input[id='my_file']").change(function(event) {
 	fr = new FileReader();
 	fr.onload = createImage;
 	fr.readAsDataURL(file);
-	storeTags();
 
 	getResult();
 
@@ -30,7 +29,6 @@ $("input[id='my_file']").change(function(event) {
 
 
 function createImage() {
-storeTags();
 	img = new Image();
 	img.onload = imageLoaded;
 	img.src = fr.result;
@@ -42,7 +40,6 @@ function imageLoaded() {
 	canvas.height = img.height;
 	var ctx = canvas.getContext("2d")
 	ctx.drawImage(img,0,0);
-	storeTags();
 
 
 
@@ -53,7 +50,6 @@ function imageLoaded() {
 	var colourSampleRate = document.getElementById("colourSampleRate").value
 	var hue = document.getElementById("hue").value
 
-storeTags();
 	$.ajax({
             type: "POST",
             url: 'http://localhost:3000/write',
@@ -67,7 +63,6 @@ storeTags();
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
-                storeTags();
             }
     });
 
@@ -82,7 +77,6 @@ storeTags();
 
 function colourItClicked() {
 	console.log("colour image clicked");
-	storeTags();
 }
 
 function changeMode() {
@@ -95,7 +89,6 @@ function changeMode() {
 }
 
 function saveImageClicked() {
-    storeTags();
 	var canvas = document.getElementById("canvas"); 
 	var imageURL = canvas.toDataURL()
 
@@ -112,7 +105,6 @@ function saveImageClicked() {
             async:true,
             crossDomain:true,
             success: function(data, status, xhr) {
-                storeTags();
             }
     });
 
@@ -127,12 +119,29 @@ function getResult() {
 		if (data === "not done") {
 			console.log("not done")
 			getResult();
-		} else {
+		} 
+		else if(data =="done12") {
 
 			console.log('quit')
-			var resultImgElement = document.getElementById('result-img');
-			resultImgElement.src = './Sever/result.png';
+			// var resultImgElement = document.getElementById('result-img');
+			// resultImgElement.src = './Sever/result.png';
 // 			$('#modal-button').click();
+			console.log(data);
+
+			setTimeout(function(){ 
+				var resultImgElement = document.getElementById('result-img');
+				resultImgElement.src = './Sever/result.png';
+			}, 1000);
+			storeTags();
+			// var resultImgElement = document.getElementById('result-img');
+			// resultImgElement.src = './Sever/result.png';
+
+			// while(!(resultImgElement.complete){
+			// 	resultImgElement = document.getElementById('result-img');
+
+			// }
+			// $('#modal-button').click();
+
 			// read file here
 			//"./Sever/result.png"
 		}
@@ -147,6 +156,16 @@ function tagButtonClick(buttonId) {
 
     $('#'+buttonId).css("background-color", "red");
 
+}
+
+function deleteImages() {
+	return $.ajax({
+	    url: 'http://localhost:3000/deleteImages',
+	    type: 'POST',
+	    error: function() {
+	        alert("Error occured")
+	    }
+	});
 }
 
 function tweetButtonClick(){
@@ -294,8 +313,8 @@ function colourSampleRateSliderOnChange(newValue) {
 
 	
 }
-function setupButtons() {
-    storeTags();
+
+function setupButtons(callback) {
 	var tags = getTagsFromStorage();
 	var json_tags = $.parseJSON(tags);
 
@@ -312,7 +331,8 @@ function setupButtons() {
 	    count++;
         }
     }
-    $('#preview').attr("src", '/Users/rowandempster/git/Angelhack/WebApp/Sever/result.png');
+    $('#preview').attr("src", '/Sever/result.png');
+    callback();
 }
 
 
@@ -320,14 +340,17 @@ function storeTags() {
 	console.log("stored tags");
 	var ajax =  clarifai_ajax_call();
     ajax.success(function(response) {
-    console.log(response);
-    json = JSON.stringify(response);
-   //creates a base-64 encoded ASCII string
-   json = btoa(json);
-   //save the encoded accout to web storage
-   localStorage.setItem('tags', json);
+	    console.log(response);
+	    json = JSON.stringify(response);
+	   //creates a base-64 encoded ASCII string
+	   json = btoa(json);
+	   //save the encoded accout to web storage
+	   localStorage.setItem('tags', json);
+	   setupButtons(function(){
+			$('#modal-button').click();
+		});
 
-});
+	});
 }
 
 function getTagsFromStorage(){
@@ -370,6 +393,5 @@ function tweet_ajax_call(message) {
     }
 });
 }
-
 
 
